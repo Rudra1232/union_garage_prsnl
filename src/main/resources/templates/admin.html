@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Link to external CSS file for high-level styling -->
 </head>
 <body>
-    <div class="container">
-        <h2> <li><a href="/addemp">Add Employee OR Manufacturer</a></li></h2>
-        <h2> <li><a href="logout">Logout</a></li></h2>
+
+<div class="container">
+    <header class="header">
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="content">
+        <div class="action-buttons">
+            <button onclick="window.location.href='/addemp'" class="btn primary-btn">Add Employee</button>
+            <button onclick="window.location.href='/addmanu'" class="btn primary-btn">Add Manufacturer</button>
+        </div>
+        
+        <div class="lists">
+            <div class="list-item">
+                <h2>Employees</h2>
+                <button onclick="window.location.href='/employees'" class="btn secondary-btn">View All Employees</button>
+            </div>
+            <div class="list-item">
+                <h2>Manufacturers</h2>
+                <button onclick="window.location.href='/manufacturers'" class="btn secondary-btn">View All Manufacturers</button>
+            </div>
+        </div>
     </div>
+
+</div>
+
 </body>
 </html>

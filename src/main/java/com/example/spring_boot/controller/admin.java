@@ -15,6 +15,7 @@ import com.example.spring_boot.services.UserService;
 import java.util.*;
 import com.example.spring_boot.entity.*;
 import com.example.spring_boot.repository.EmployeeRepo;
+import com.example.spring_boot.repository.ManufacturerRepo;
 @Controller
 public class admin{
     @Autowired
@@ -24,7 +25,7 @@ public class admin{
         this.userService=userService;
     }
  @GetMapping("/addemp")
-    public String add(Model model) {
+    public String addemp(Model model) {
        
         model.addAttribute("user", new UserRegistrationDto());
         List<Role> k=new ArrayList<>();
@@ -33,14 +34,34 @@ public class admin{
         model.addAttribute("roles", k);
         return "registeremployee"; // Name of the Thymeleaf template
     }
+    @GetMapping("/addmanu")
+    public String addmanu(Model model) {
+       
+        model.addAttribute("user", new UserRegistrationDto());
+        List<Role> k=new ArrayList<>();
+        Role r1=new Role(1L,"MANUFACTURER");
+        k.add(r1);
+        model.addAttribute("roles", k);
+        return "registermanufacturer"; // Name of the Thymeleaf template
+    }
     
     @PostMapping("/addemp")
-    public String registerUser(@ModelAttribute("user") UserRegistrationDto userDto) throws Exception{
+    public String registerUseremp(@ModelAttribute("user") UserRegistrationDto userDto) throws Exception{
         // System.out.println(userDto.getPassword()+"^^^##$$%#$%");
         User Newuser=userService.registerUser(userDto);
         Long id=Newuser.getId();
         System.out.println(id);
         EmployeeRepo.add_new_emp(id);
+        return "redirect:/admin"; // Redirect to login after registration
+    }
+
+    @PostMapping("/addmanu")
+    public String registerUsermanu(@ModelAttribute("user") UserRegistrationDto userDto) throws Exception{
+        // System.out.println(userDto.getPassword()+"^^^##$$%#$%");
+        User Newuser=userService.registerUser(userDto);
+        Long id=Newuser.getId();
+        System.out.println(id);
+        ManufacturerRepo.addNewManufacturer(id);
         return "redirect:/admin"; // Redirect to login after registration
     }
     
