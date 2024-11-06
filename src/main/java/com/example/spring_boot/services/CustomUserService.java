@@ -54,7 +54,7 @@ public class CustomUserService implements AuthenticationSuccessHandler {
                 break;
             }
             else if (authority.getAuthority().equals("RENTER")) {
-                redirectUrl = "/renter/"+userId;
+                redirectUrl = "/renter";
                 break;
             }
         }

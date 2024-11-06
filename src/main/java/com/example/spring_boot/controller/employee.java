@@ -21,10 +21,8 @@ import jakarta.servlet.http.HttpSession;
 public class employee {
      @GetMapping("/employee")
     public String infopage(Model model,HttpSession session){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username=auth.getName();
-        Long id=UserDAO.getUserIdByUsername(username);
-        session.setAttribute("id", id);
+        Long id=(Long)session.getAttribute("id");
+        System.out.println(id+"******");
         Employee m1=EmployeeRepo.getCustomerById(id);
         m1.setEmpId(id);
         model.addAttribute("employee",m1);
